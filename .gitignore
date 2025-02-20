@@ -1,0 +1,8 @@
+# Ignore system files
+AppData/
+AppData/Local/
+AppData/Local/Microsoft/
+AppData/Local/Microsoft/Edge/
+AppData/Local/Microsoft/Edge/User Data/
+AppData/Local/Microsoft/Edge/User Data/Default/
+AppData/Local/Microsoft/Edge/User Data/Default/Cache/

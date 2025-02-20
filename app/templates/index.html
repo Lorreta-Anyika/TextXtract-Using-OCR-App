@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>TextXtract Pro - OCR App</title>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-[#893f45] text-white py-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <h1 class="text-lg font-bold">TextXtract using OCR</h1>
+      <p class="text-sm">Made by <span class="text-yellow-300">Lorreta</span></p>
+    </div>
+  </nav>
+
+  <!-- Upload Section -->
+  <div class="container mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
+    <form action="/" method="post" enctype="multipart/form-data" class="space-y-6">
+      
+      <!-- File Upload -->
+      <div>
+        <label for="image_upload" class="block font-bold mb-2">Upload Image</label>
+        <div class="flex items-center gap-3">
+          <input type="file" name="image_upload" id="image_upload" class="border p-2 w-full rounded-md">
+          <button type="submit" class="bg-[#893f45] text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+            Extract
+          </button>
+        </div>
+      </div>
+
+      <!-- Display Extracted Text -->
+      {% if text %}
+      <div class="bg-gray-100 p-4 rounded-md">
+        <h3 class="font-semibold text-lg">Extracted Text</h3>
+        {% for i in text: %}
+          <p class="text-gray-800">{{ i }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Display Uploaded Image -->
+      {% if full_filename %}
+      <div class="flex justify-center">
+        <img src="{{ url_for('static', filename=full_filename) }}" class="rounded-lg shadow-md w-96 h-60 object-cover">
+      </div>
+      {% endif %}
+
+    </form>
+  </div>
+
+  <!-- JS Script -->
+  <script>
+    document.getElementById('image_upload').onchange = function () {
+        document.getElementById('image_name').value = this.value.split('\\').pop();
+    };
+  </script>
+
+</body>
+</html>
